@@ -1,0 +1,13 @@
+@model Reminder
+
+<form asp-action="Create">
+    <div>
+        <label>Title</label>
+        <input asp-for="Title" />
+    </div>
+    <div>
+        <label>Date-Time</label>
+        <input asp-for="DateTime" type="datetime-local" />
+    </div>
+    <button type="submit">Save</button>
+</form>

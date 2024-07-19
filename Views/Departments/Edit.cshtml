@@ -1,0 +1,51 @@
+﻿@model Department
+
+@{
+    ViewData["Title"] = "Edit Department";
+}
+
+<h1>Edit Department</h1>
+
+<h4>Department</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="hidden" asp-for="Id" />
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Logo" class="control-label">Upload Logo</label>
+                <input type="file" name="Logo" class="form-control" />
+                <img src="@Model.Logo" alt="@Model.Name" width="100" height="100" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ParentDepartmentId" class="control-label">Parent Department</label>
+                <select asp-for="ParentDepartmentId" class="form-control" asp-items="ViewBag.Departments">
+                    <option value="">None</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="SubDepartments" class="control-label">Sub Departments</label>
+                <select asp-for="SubDepartments" class="form-control" multiple asp-items="ViewBag.Departments">
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
